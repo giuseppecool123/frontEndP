@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      IQ Quiz Game
+      IQ Quiz Gamede
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -17,13 +17,14 @@
     <strong>Welcome to the IQ Quiz Game!</strong>
     <p>Test your knowledge and have fun!</p>
 
-    <ion-button class="custom-button" expand="block" color="primary" routerLink="/start-game">
+    <!-- Buttons with navigation using routerlink -->
+    <ion-button class="custom-button" expand="block" color="primary" [routerLink]="['/game']">
       Start Game
     </ion-button>
-    <ion-button class="custom-button" expand="block" color="secondary" routerLink="/high-scores">
+    <ion-button class="custom-button" expand="block" color="secondary" [routerLink]="['/high-scores']">
       High Scores
     </ion-button>
-    <ion-button class="custom-button" expand="block" color="tertiary" routerLink="/settings">
+    <ion-button class="custom-button" expand="block" color="tertiary" [routerLink]="['/settings']" >
       Settings
     </ion-button>
   </div>
