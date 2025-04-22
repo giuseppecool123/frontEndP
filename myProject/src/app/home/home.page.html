@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      IQ Quiz Game
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,22 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">IQ Quiz Game</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div id="container" style="text-align: center; padding: 20px;">
+    <strong>Welcome to the IQ Quiz Game!</strong>
+    <p>Test your knowledge and have fun!</p>
+
+    <ion-button expand="block" color="primary" routerLink="/start-game">
+      Start Game
+    </ion-button>
+    <ion-button expand="block" color="secondary" routerLink="/high-scores">
+      High Scores
+    </ion-button>
+    <ion-button expand="block" color="tertiary" routerLink="/settings">
+      Settings
+    </ion-button>
   </div>
 </ion-content>
