@@ -1,3 +1,4 @@
+<!-- Template for the game page -->
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>Game</ion-title>
@@ -10,4 +11,45 @@
       <ion-title size="large">Game</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div style="padding: 20px; text-align: center;">
+    <h2>Select Category and Difficulty</h2>
+
+    <!-- Category Dropdown -->
+    <ion-item>
+      <ion-label>Category</ion-label>
+      <ion-select [(ngModel)]="selectedCategory" placeholder="Select Category">
+        <ion-select-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Difficulty Dropdown -->
+    <ion-item>
+      <ion-label>Difficulty</ion-label>
+      <ion-select [(ngModel)]="selectedDifficulty" placeholder="Select Difficulty">
+        <ion-select-option value="easy">Easy</ion-select-option>
+        <ion-select-option value="medium">Medium</ion-select-option>
+        <ion-select-option value="hard">Hard</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Start Game Button -->
+    <ion-button expand="block" color="primary" (click)="startGame()">
+      Start Game
+    </ion-button>
+
+    <!-- Questions Section -->
+    <div *ngIf="questions.length > 0">
+      <h3>Question {{ currentQuestionIndex + 1 }} of {{ questions.length }}</h3>
+      <p>{{ questions[currentQuestionIndex]?.question }}</p>
+
+      <ion-list>
+        <ion-item *ngFor="let answer of shuffledAnswers" (click)="submitAnswer(answer)">
+          {{ answer }}
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>

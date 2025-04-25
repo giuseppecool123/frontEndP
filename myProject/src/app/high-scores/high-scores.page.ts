@@ -1,20 +1,23 @@
+//compomnet for displayng high scores
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonicModule } from '@ionic/angular';
+import { NgFor, CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-high-scores',
   templateUrl: './high-scores.page.html',
   styleUrls: ['./high-scores.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonicModule, // Import IonicModule to include all Ionic components
+    NgFor,
+    CommonModule, // Required for the date pipe
+  ],
 })
 export class HighScoresPage implements OnInit {
-
-  constructor() { }
+  highScores: any[] = [];//storibg the high scores in an array
 
   ngOnInit() {
+    this.highScores = JSON.parse(localStorage.getItem('highScores') || '[]'); //load the scores from the local storage
   }
-
 }
