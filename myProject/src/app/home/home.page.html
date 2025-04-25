@@ -24,8 +24,14 @@
     <ion-button class="custom-button" expand="block" color="secondary" [routerLink]="['/high-scores']">
       High Scores
     </ion-button>
-    <ion-button class="custom-button" expand="block" color="tertiary" [routerLink]="['/settings']" >
+    <ion-button class="custom-button" expand="block" color="tertiary" [routerLink]="['/settings']">
       Settings
     </ion-button>
+
+    <!-- Display network status -->
+    <div style="margin-top: 100px;">
+      <h3>Network Status</h3>
+      <p><strong>Status:</strong> {{ networkStatus }}</p>
+    </div>
   </div>
 </ion-content>
