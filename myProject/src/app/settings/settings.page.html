@@ -10,4 +10,30 @@
       <ion-title size="large">Settings</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <div style="padding: 20px;">
+    <!-- Theme Toggle -->
+    <ion-item>
+      <ion-label>Dark Mode</ion-label>
+      <ion-toggle [(ngModel)]="toggleTheme" (ionChange)="toggleThemeMode()"></ion-toggle>
+    </ion-item>
+
+    <!-- Accent Color Picker -->
+    <ion-item>
+      <ion-label>Accent Color</ion-label>
+      <ion-select [(ngModel)]="selectedColor" (ionChange)="changeAccentColor()">
+        <ion-select-option value="primary">Blue</ion-select-option>
+        <ion-select-option value="secondary">Teal</ion-select-option>
+        <ion-select-option value="tertiary">Purple</ion-select-option>
+        <ion-select-option value="success">Green</ion-select-option>
+        <ion-select-option value="warning">Yellow</ion-select-option>
+        <ion-select-option value="danger">Red</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <!-- Reset High Scores Button -->
+    <ion-button expand="block" color="danger" (click)="resetHighScores()">
+      Reset High Scores
+    </ion-button>
+  </div>
 </ion-content>

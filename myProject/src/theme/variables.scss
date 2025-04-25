@@ -32,4 +32,45 @@
     --ion-color-dark: #222428;
     --ion-color-medium: #92949c;
     --ion-color-light: #f4f5f8;
+    
+    /* Dark mode styles */
+body.dark {
+  --ion-background-color: #121212;
+  --ion-text-color: #ffffff;
+  --ion-color-primary: #bb86fc;
+  --ion-color-secondary: #03dac6;
+  --ion-color-tertiary: #03a9f4;
+}
+/* filepath: c:\Users\Giuseppe Ciro\OneDrive\Desktop\frontEndP\myProject\src\theme\variables.scss */
+:root {
+  /* Default light mode styles */
+  --ion-background-color: #ffffff;
+  --ion-text-color: #000000;
+  --ion-color-primary: #3880ff;
+  --ion-color-secondary: #3dc2ff;
+  --ion-color-tertiary: #3b3e49;
+  --ion-color-success: #2dd36f;
+  --ion-color-warning: #ffc409;
+  --ion-color-danger: #eb445a;
+}
+
+/* Dynamic accent color styles for settings page */
+body[color-theme='primary'] {
+  --ion-color-primary: #3880ff;
+}
+body[color-theme='secondary'] {
+  --ion-color-primary: #3dc2ff;
+}
+body[color-theme='tertiary'] {
+  --ion-color-primary: #3b3e49;
+}
+body[color-theme='success'] {
+  --ion-color-primary: #2dd36f;
+}
+body[color-theme='warning'] {
+  --ion-color-primary: #ffc409;
+}
+body[color-theme='danger'] {
+  --ion-color-primary: #eb445a;
+}
   }

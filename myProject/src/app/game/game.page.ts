@@ -25,6 +25,7 @@ export class GamePage implements OnInit {
     { id: 11, name: 'Film Knowledge' },
     //i can add more cattagories here example...
     { id: 12, name: 'Entertainment: Musics' },
+    { id: 31, name: 'anime and manga' },
   ];
   selectedCategory: number | null = null;
   selectedDifficulty: string | null = null;
@@ -36,30 +37,46 @@ export class GamePage implements OnInit {
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {}
-//start game by fetching the api
-  startGame() {
-    if (!this.selectedCategory || !this.selectedDifficulty) {
-      alert('Please select a category and difficulty!');
-      return;
-    }
 
-    const url = `https://opentdb.com/api.php?amount=10&category=${this.selectedCategory}&difficulty=${this.selectedDifficulty}&type=multiple`;
-    this.http.get<any>(url).subscribe(
-      (response) => {
-        if (response.results && response.results.length > 0) {
-          this.questions = response.results;
-          this.currentQuestionIndex = 0;
-          this.prepareQuestion();
-        } else {
-          alert('No questions found for the selected category and difficulty.');
-        }
-      },
-      (error) => {
-        console.error('Error fetching questions:', error);//errror handling
-        alert('Failed to fetch questions. Please try again later.');
-      }
-    );
+    // Utility function to decode HTML entities
+    decodeHtml(html: string): string {
+      const textArea = document.createElement('textarea');
+      textArea.innerHTML = html;
+      return textArea.value;
+    }
+  
+//start game by fetching the api
+startGame() {
+  if (!this.selectedCategory || !this.selectedDifficulty) {
+    alert('Please select a category and difficulty!');
+    return;
   }
+
+  const url = `https://opentdb.com/api.php?amount=10&category=${this.selectedCategory}&difficulty=${this.selectedDifficulty}&type=multiple`;
+  this.http.get<any>(url).subscribe(
+    (response) => {
+      if (response.results && response.results.length > 0) {
+        // Decode HTML entities in questions and answers
+        this.questions = response.results.map((question: any) => ({
+          ...question,
+          question: this.decodeHtml(question.question),
+          correct_answer: this.decodeHtml(question.correct_answer),
+          incorrect_answers: question.incorrect_answers.map((answer: string) =>
+            this.decodeHtml(answer)
+          ),
+        }));
+        this.currentQuestionIndex = 0;
+        this.prepareQuestion();
+      } else {
+        alert('No questions found for the selected category and difficulty.');
+      }
+    },
+    (error) => {
+      console.error('Error fetching questions:', error); // Error handling
+      alert('Failed to fetch questions. Please try again later.');
+    }
+  );
+}
 
   //prepare the question by shuffling the answers
   prepareQuestion() {
